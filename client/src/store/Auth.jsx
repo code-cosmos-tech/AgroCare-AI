@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     const tokenBearer = "Bearer " + token;
-    const URL = "http://localhost:4000";
+    const URL = "https://agrocare-ai-server.onrender.com";
     const isLoggedIn = !!token;
 
     const AuthenticateUser = async () => {
