@@ -8,7 +8,7 @@ const errorFunction = require("./middlewares/error-func");
 const cors = require("cors");
 
 const PORT = process.env.PORT || 4000;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+const CLIENT_URL = process.env.CLIENT_URL || 'https://agrocare-ai-server.onrender.com';
 
 const corsOption = {
   origin: [CLIENT_URL, 'http://localhost:5173', 'http://127.0.0.1:3000'],
