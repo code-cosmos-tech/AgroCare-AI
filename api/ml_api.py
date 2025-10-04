@@ -14,8 +14,8 @@ init(autoreset=True)
 app = Flask(__name__)
 
 CORS_ORIGINS = [
-    "http://localhost:5173",   # React frontend
-    "http://localhost:4000",   # Node.js backend
+    "https://agro-care-ai.vercel.app",   # React frontend
+    "https://agrocare-ai-btf5.onrender.com",   # Node.js backend
     "http://127.0.0.1:3000",
     "http://127.0.0.1:4000"
 ]
@@ -25,7 +25,7 @@ CORS(app, resources={r"/*": {"origins": CORS_ORIGINS}}, supports_credentials=Tru
 @app.after_request
 def after_request(response):
     """ Ensure CORS headers are always returned """
-    response.headers.add("Access-Control-Allow-Origin", "http://localhost:5173")
+    response.headers.add("Access-Control-Allow-Origin", "https://agro-care-ai.vercel.app")
     response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
     response.headers.add("Access-Control-Allow-Methods", "GET,POST,OPTIONS,PUT,DELETE")
     return response
