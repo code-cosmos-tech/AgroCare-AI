@@ -91,7 +91,7 @@ const FarmerDashboard = () => {
     setPrediction(null);
 
     try {
-      const response = await axios.post("http://127.0.0.1/predict/yield", {
+      const response = await axios.post("https://agrocare-ai-btf5.onrender.com/predict/yield", {
         ...farmInfo,
         Area: parseFloat(farmInfo.Area),
         Annual_Rainfall: parseFloat(farmInfo.Annual_Rainfall),

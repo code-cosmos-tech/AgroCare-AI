@@ -34,7 +34,7 @@ const Login = () => {
             const data = await response.json();
             if (response.ok) {
                 setUserToken(data.token);
-                navigate("/");
+                navigate("/dashboard");
                 toast.success(data.msg);
             } else {
                 toast.error(data.msg);

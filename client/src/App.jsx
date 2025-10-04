@@ -9,6 +9,7 @@ import PestIdentifier from './pages/PestIdentifier';
 import { ToastContainer } from "react-toastify"
 import { useAuth } from './store/Auth';
 import { useLanguage } from './store/language';
+import { Home } from './pages/Home';
 
 // Header Component
 const Header = () => {
@@ -134,6 +135,14 @@ const Sidebar = () => {
   );
 };
 
+const UnProtected = ({children}) => {
+  const {isLoggedIn} = useAuth();
+  if(isLoggedIn) {
+    return <Navigate to={"/dashboard"} replace />
+  }
+  return children;
+}
+
 const ProtectedRoute = ({ children }) => {
   const { isLoggedIn } = useAuth();
   if (!isLoggedIn) {
@@ -165,8 +174,9 @@ const AppContent = () => {
     <>
       <Routes>
         {/* Authentication pages without layout */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path='/' element={<UnProtected><Home /></UnProtected>} />
+        <Route path="/login" element={<UnProtected><Login /></UnProtected>} />
+        <Route path="/signup" element={<UnProtected><Signup /></UnProtected>} />
 
         {/* Protected pages with layout */}
         <Route path="/dashboard" element={<ProtectedRoute><MainLayout><Dashboard /></MainLayout></ProtectedRoute>} />
@@ -175,7 +185,7 @@ const AppContent = () => {
         <Route path="/identify" element={<ProtectedRoute><MainLayout><PestIdentifier /></MainLayout></ProtectedRoute>} />
 
         {/* Default redirect */}
-        <Route path="*" element={<MainLayout><Dashboard /></MainLayout>} />
+        <Route path="*" element={<MainLayout><Home /></MainLayout>} />
       </Routes>
       <ToastContainer
         position="bottom-right"
