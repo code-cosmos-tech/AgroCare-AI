@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../store/language';
 import { useAuth } from '../store/Auth';
+import {useNavigate} from "react-router";
 
 // Mock axios for demonstration. Replace with your actual API calls.
 const axios = {
@@ -51,6 +52,7 @@ const BugIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height=
 const FarmerDashboard = () => {
   const { isLoggedIn } = useAuth();
   const {T, language, setLanguage} = useLanguage();
+  const navigate = useNavigate();
 
   // State to hold all the farm information from the form
   const [farmInfo, setFarmInfo] = useState({
@@ -67,12 +69,12 @@ const FarmerDashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  // Redirect if not logged in (good practice)
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     return navigate("/login");
-  //   }
-  // }, [isLoggedIn, navigate]);
+  // Redirect if not logged in
+  useEffect(() => {
+    if (!isLoggedIn) {
+      return navigate("/login");
+    }
+  }, [isLoggedIn, navigate]);
 
   // A single function to update farm info when the user types
   const handleInfoChange = (e) => {
